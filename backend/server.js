@@ -1,15 +1,12 @@
 const express = require('express');
 const dotenv = require('dotenv');
+
+dotenv.config();
+
 const cors = require('cors');
 const http = require('http');
 const { Server } = require('socket.io');
 const connectDB = require('./config/db');
-const Message = require('./models/Message');
-const Club = require('./models/Club');
-
-dotenv.config();
-
-connectDB();
 
 const app = express();
 const server = http.createServer(app);

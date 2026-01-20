@@ -33,7 +33,12 @@ const getClubById = async (req, res) => {
             return res.status(404).json({ message: 'Club not found' });
         }
 
-        res.json(club);
+        // Ensure hierarchy defaults to empty array if undefined
+        const safeClub = club.toObject();
+        safeClub.hierarchy = safeClub.hierarchy || [];
+        safeClub.head = safeClub.head || null;
+
+        res.json(safeClub);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
